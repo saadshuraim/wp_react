@@ -11,3 +11,53 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 }
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+.page-transition {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Font styles */
+.font-heading {
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-weight: 700;
+}
+
+/* Star rating colors */
+.star-rating .fas, .star-rating .far, .star-rating .fa-star-half-alt {
+  color: #FFD700;
+}
+
+/* Link hover styles */
+.nav-link.active {
+  position: relative;
+}
+
+.nav-link.active:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}

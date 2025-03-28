@@ -11,10 +11,8 @@ const HeroBanner = () => {
           <p className="text-white/90 mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             Discover a world of knowledge curated by the AI Department at FAST University Karachi.
           </p>
-          <Link href="/#books-section">
-            <a className="bg-accent hover:bg-accent-dark text-white px-6 py-2 rounded-md font-medium transition-colors inline-block animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              Explore Books
-            </a>
+          <Link href="/#books-section" className="bg-accent hover:bg-accent-dark text-white px-6 py-2 rounded-md font-medium transition-colors inline-block animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            Explore Books
           </Link>
         </div>
         <div className="hidden md:block md:w-1/3">

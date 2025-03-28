@@ -16,7 +16,9 @@ const Footer = () => {
             </div>
             <p className="mt-2 text-sm text-white/70">
               FAST University Karachi<br />
-              Artificial Intelligence Department
+              Artificial Intelligence Department<br />
+              Saad Rashid | 22K-4108 | BSAI-6B<br />
+              Assignment 2 (React App) - Web Programming
             </p>
           </div>
           
