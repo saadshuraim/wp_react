@@ -41,7 +41,7 @@ const HeroBanner = () => {
         const day = today.getDate();
         
         // First try to get a date fact (historical event on this day)
-        let response = await fetch(`http://numbersapi.com/${month}/${day}/date?json`);
+        let response = await fetch(`https://numbersapi.com/${month}/${day}/date?json`);
         let data = await response.json();
         
         // If successful, use this fact
@@ -50,7 +50,7 @@ const HeroBanner = () => {
           setFactType('date');
         } else {
           // Fallback to a random trivia fact
-          response = await fetch(`http://numbersapi.com/random/trivia?json`);
+          response = await fetch(`https://numbersapi.com/random/trivia?json`);
           data = await response.json();
           setFact(data.text);
           setFactType('trivia');
@@ -73,7 +73,7 @@ const HeroBanner = () => {
       {/* Subtle animated clock - hidden on mobile for better performance */}
       <div className="absolute top-10 right-10 opacity-20 z-0 pointer-events-none hidden md:block">
         <div className="w-40 h-40 clock-hand">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 100 100" xmlns="https://www.w3.org/2000/svg">
             <path d="M50 10 L55 50 L50 55 L45 50 Z" fill="#2D3A25" />
             <circle cx="50" cy="50" r="5" fill="#B8860B" />
           </svg>
@@ -138,7 +138,7 @@ const HeroBanner = () => {
                 <p className="text-amber-900 leading-relaxed text-sm md:text-base time-period-historical">{fact}</p>
                 <div className="mt-3 flex justify-end">
                   <button 
-                    onClick={() => window.open('http://numbersapi.com', '_blank')}
+                    onClick={() => window.open('https://numbersapi.com', '_blank')}
                     className="text-xs md:text-sm text-amber-800 hover:text-amber-900 transition-colors flex items-center quill-hover"
                   >
                     <span>Source: Numbers API</span>
@@ -148,7 +148,7 @@ const HeroBanner = () => {
                 
                 {/* Subtle ink stain decoration - hidden on mobile */}
                 <div className="absolute -bottom-4 -right-4 opacity-10 w-20 h-20 hidden md:block">
-                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <svg viewBox="0 0 100 100" xmlns="https://www.w3.org/2000/svg">
                     <circle cx="50" cy="50" r="40" fill="#2C1B01" />
                     <circle cx="65" cy="35" r="5" fill="#2C1B01" />
                     <circle cx="35" cy="65" r="8" fill="#2C1B01" />
@@ -163,7 +163,7 @@ const HeroBanner = () => {
         <div className="relative h-48 md:h-auto">
           <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
           <img 
-            src="https://khi.nu.edu.pk/wp-content/uploads/2023/06/DSC_0361.jpg" 
+            src="httpss://khi.nu.edu.pk/wp-content/uploads/2023/06/DSC_0361.jpg" 
             alt="Library with books" 
             className="absolute inset-0 w-full h-full object-cover sepia-[0.6] z-0" 
             loading="eager" // Load priority for above-the-fold image

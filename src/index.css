@@ -1,5 +1,5 @@
 /* Import Google Fonts for Victorian library theme - only the weights we actually use */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@700&family=Source+Code+Pro&display=swap');
+@import url('httpss://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@700&family=Source+Code+Pro&display=swap');
 
 @tailwind base;
 @tailwind components;

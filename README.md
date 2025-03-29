@@ -89,7 +89,7 @@ BookHaven is a fully functional online bookstore platform built with React. It p
 1. Clone the repository
 2. Install dependencies with `npm install`
 3. Start the development server with `npm run dev`
-4. Open http://localhost:5173 in your browser
+4. Open https://localhost:5173 in your browser
 
 ## Project Structure
 - `/client/src/components`: Reusable UI components
