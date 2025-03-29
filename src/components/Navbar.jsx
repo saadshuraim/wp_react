@@ -34,7 +34,7 @@ const Navbar = () => {
           {/* Logo and Site Title */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="relative w-10 h-10">
-              <svg viewBox="0 0 50 50" xmlns="https://www.w3.org/2000/svg" className="w-full h-full">
+              <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                 <rect width="30" height="40" x="10" y="5" rx="2" fill="#DAA520" />
                 <rect width="28" height="38" x="11" y="6" rx="1" fill="#FFFAF0" />
                 <path d="M15 15 H35 M15 20 H30 M15 25 H35 M15 30 H25" stroke="#8B4513" strokeWidth="1" />

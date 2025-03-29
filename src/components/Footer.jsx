@@ -8,7 +8,7 @@ const Footer = () => {
       {/* Decorative gear elements */}
       <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
         <div className="relative w-16 h-16">
-          <svg viewBox="0 0 100 100" xmlns="https://www.w3.org/2000/svg">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="45" fill="#B87333" stroke="#8B4513" strokeWidth="2" />
             <path d="M50,10 L55,50 L50,55 L45,50 Z M50,90 L45,50 L50,45 L55,50 Z M10,50 L50,45 L55,50 L50,55 Z M90,50 L50,55 L45,50 L50,45 Z" fill="#8B4513" />
             <circle cx="50" cy="50" r="10" fill="#8B4513" />
@@ -29,11 +29,11 @@ const Footer = () => {
               Journey through literary history with our curated collection of books from every era, brought to you by the AI Department at FAST University Karachi.
             </p>
             <div className="flex flex-col space-y-2">
-              <a href="httpss://github.com/saadshuraim" target="_blank" rel="noopener noreferrer" 
+              <a href="https://github.com/saadshuraim" target="_blank" rel="noopener noreferrer" 
                  className="text-amber-200 hover:text-amber-100 transition-colors">
                 <i className="fab fa-github mr-2"></i> github.com/saadshuraim
               </a>
-              <a href="httpss://www.linkedin.com/in/saad-rashid-990724214/" target="_blank" rel="noopener noreferrer" 
+              <a href="https://www.linkedin.com/in/saad-rashid-990724214/" target="_blank" rel="noopener noreferrer" 
                  className="text-amber-200 hover:text-amber-100 transition-colors">
                 <i className="fab fa-linkedin mr-2"></i> linkedin.com/in/saad-rashid-990724214
               </a>

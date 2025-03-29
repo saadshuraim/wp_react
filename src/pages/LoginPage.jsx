@@ -16,7 +16,7 @@ const LoginPage = () => {
   const ClockIcon = () => (
     <div className="inline-block mr-2 relative w-6 h-6">
       <div className="absolute inset-0">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="9" stroke="#2D3A25" strokeWidth="2"/>
           <path className="clock-hand" d="M12 7v5h4" stroke="#2D3A25" strokeWidth="2" strokeLinecap="round"/>
         </svg>
@@ -81,12 +81,12 @@ const LoginPage = () => {
       <div className="parchment-bg rounded-lg victorian-border relative p-6 shadow-md max-w-md mx-auto">
         {/* Decorative corner elements */}
         <div className="absolute top-0 left-0 w-12 md:w-16 h-12 md:h-16 opacity-20 hidden sm:block">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="https://www.w3.org/2000/svg">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0 L100 0 L100 20 L20 20 L20 100 L0 100 Z" fill="#2D3A25"/>
           </svg>
         </div>
         <div className="absolute bottom-0 right-0 w-12 md:w-16 h-12 md:h-16 opacity-20 transform rotate-180 hidden sm:block">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="https://www.w3.org/2000/svg">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0 L100 0 L100 20 L20 20 L20 100 L0 100 Z" fill="#2D3A25"/>
           </svg>
         </div>
@@ -94,7 +94,7 @@ const LoginPage = () => {
         <div className="relative z-10">
           <div className="text-center mb-8 animate-fade-in">
             <div className="brass-bg w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center">
-              <svg className="w-12 h-12 text-neutral-50" viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
+              <svg className="w-12 h-12 text-neutral-50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.2"/>
                 <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -164,7 +164,7 @@ const LoginPage = () => {
               {isSubmitting ? (
                 <>
                   <div className="w-5 h-5 mr-2 relative">
-                    <svg viewBox="0 0 100 100" xmlns="https://www.w3.org/2000/svg" className="animate-spin">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="animate-spin">
                       <circle cx="50" cy="50" r="45" fill="transparent" stroke="currentColor" strokeWidth="8" strokeDasharray="150" strokeDashoffset="25" />
                     </svg>
                   </div>

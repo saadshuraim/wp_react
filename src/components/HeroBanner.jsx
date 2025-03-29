@@ -163,7 +163,7 @@ const HeroBanner = () => {
         <div className="relative h-48 md:h-auto">
           <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
           <img 
-            src="httpss://khi.nu.edu.pk/wp-content/uploads/2023/06/DSC_0361.jpg" 
+            src="https://khi.nu.edu.pk/wp-content/uploads/2023/06/DSC_0361.jpg" 
             alt="Library with books" 
             className="absolute inset-0 w-full h-full object-cover sepia-[0.6] z-0" 
             loading="eager" // Load priority for above-the-fold image

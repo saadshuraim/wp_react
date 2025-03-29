@@ -94,7 +94,7 @@ const BookDetailPage = () => {
   const ClockIcon = () => (
     <div className="inline-block mr-2 relative w-6 h-6">
       <div className="absolute inset-0">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="9" stroke="#2D3A25" strokeWidth="2"/>
           <path className="clock-hand" d="M12 7v5h4" stroke="#2D3A25" strokeWidth="2" strokeLinecap="round"/>
         </svg>
@@ -106,7 +106,7 @@ const BookDetailPage = () => {
     return (
       <div className="flex justify-center items-center h-64">
         <div className="relative w-16 h-16">
-          <svg viewBox="0 0 100 100" xmlns="https://www.w3.org/2000/svg">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="45" fill="#B87333" stroke="#8B4513" strokeWidth="2" />
             <path d="M50,10 L55,50 L50,55 L45,50 Z M50,90 L45,50 L50,45 L55,50 Z M10,50 L50,45 L55,50 L50,55 Z M90,50 L50,55 L45,50 L50,45 Z" fill="#8B4513" />
             <circle cx="50" cy="50" r="10" fill="#8B4513" />
@@ -166,12 +166,12 @@ const BookDetailPage = () => {
       <div className="parchment-bg rounded-lg victorian-border relative p-6 shadow-md">
         {/* Decorative corner elements */}
         <div className="absolute top-0 left-0 w-12 md:w-16 h-12 md:h-16 opacity-20 hidden sm:block">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="https://www.w3.org/2000/svg">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0 L100 0 L100 20 L20 20 L20 100 L0 100 Z" fill="#2D3A25"/>
           </svg>
         </div>
         <div className="absolute bottom-0 right-0 w-12 md:w-16 h-12 md:h-16 opacity-20 transform rotate-180 hidden sm:block">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="https://www.w3.org/2000/svg">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0 L100 0 L100 20 L20 20 L20 100 L0 100 Z" fill="#2D3A25"/>
           </svg>
         </div>
@@ -185,7 +185,7 @@ const BookDetailPage = () => {
                 className="w-full max-w-xs object-cover rounded-md shadow-md border-2 border-amber-900" 
               />
               <div className="absolute -bottom-3 -right-3 w-10 h-10">
-                <svg viewBox="0 0 100 100" xmlns="https://www.w3.org/2000/svg">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="50" cy="50" r="45" fill="#B87333" stroke="#8B4513" strokeWidth="2" />
                   <path d="M50,10 L55,50 L50,55 L45,50 Z" fill="#8B4513" />
                   <circle cx="50" cy="50" r="5" fill="#DAA520" />

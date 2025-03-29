@@ -55,7 +55,7 @@ const HomePage = () => {
   const ClockIcon = () => (
     <div className="inline-block mr-2 relative w-6 h-6">
       <div className="absolute inset-0">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="9" stroke="#2D3A25" strokeWidth="2"/>
           <path className="clock-hand" d="M12 7v5h4" stroke="#2D3A25" strokeWidth="2" strokeLinecap="round"/>
         </svg>
@@ -71,12 +71,12 @@ const HomePage = () => {
       <div className="mb-10 mt-12 parchment-bg p-4 sm:p-6 rounded-lg relative" id="books-section">
         {/* Decorative corner elements - hidden on mobile */}
         <div className="absolute top-0 left-0 w-12 md:w-16 h-12 md:h-16 opacity-20 hidden sm:block pointer-events-none">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="https://www.w3.org/2000/svg">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0 L100 0 L100 20 L20 20 L20 100 L0 100 Z" fill="#2D3A25"/>
           </svg>
         </div>
         <div className="absolute bottom-0 right-0 w-12 md:w-16 h-12 md:h-16 opacity-20 transform rotate-180 hidden sm:block pointer-events-none">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="https://www.w3.org/2000/svg">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0 L100 0 L100 20 L20 20 L20 100 L0 100 Z" fill="#2D3A25"/>
           </svg>
         </div>
