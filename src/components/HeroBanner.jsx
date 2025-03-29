@@ -41,7 +41,7 @@ const HeroBanner = () => {
         const day = today.getDate();
         
         // First try to get a date fact (historical event on this day)
-        let response = await fetch(`https://numbersapi.com/${month}/${day}/date?json`);
+        let response = await fetch(`http://numbersapi.com/${month}/${day}/date?json`);
         let data = await response.json();
         
         // If successful, use this fact
@@ -50,7 +50,7 @@ const HeroBanner = () => {
           setFactType('date');
         } else {
           // Fallback to a random trivia fact
-          response = await fetch(`https://numbersapi.com/random/trivia?json`);
+          response = await fetch(`http://numbersapi.com/random/trivia?json`);
           data = await response.json();
           setFact(data.text);
           setFactType('trivia');
@@ -138,7 +138,7 @@ const HeroBanner = () => {
                 <p className="text-amber-900 leading-relaxed text-sm md:text-base time-period-historical">{fact}</p>
                 <div className="mt-3 flex justify-end">
                   <button 
-                    onClick={() => window.open('https://numbersapi.com', '_blank')}
+                    onClick={() => window.open('http://numbersapi.com', '_blank')}
                     className="text-xs md:text-sm text-amber-800 hover:text-amber-900 transition-colors flex items-center quill-hover"
                   >
                     <span>Source: Numbers API</span>

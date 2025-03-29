@@ -180,7 +180,7 @@ const BookDetailPage = () => {
           <div className="md:w-1/3 p-4 flex justify-center">
             <div className="relative">
               <img 
-                src={'../src/data'+book.coverImage} 
+                src={'../data'+book.coverImage} 
                 alt={`Book cover for ${book.title}`} 
                 className="w-full max-w-xs object-cover rounded-md shadow-md border-2 border-amber-900" 
               />
