@@ -134,7 +134,7 @@ const BookCard = memo(({ book }) => {
               </div>
             )}
             <img 
-              src={'../src/data'+book.coverImage} 
+              src={book.coverImage} 
               alt={`Book cover: ${book.title}`} 
               className={`w-full h-56 object-cover transition-opacity duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
