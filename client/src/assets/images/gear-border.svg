@@ -1,0 +1,30 @@
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Single gear that will repeat as a border -->
+  <g transform="translate(50, 50)">
+    <!-- Outer gear -->
+    <path d="M 0,-40 
+             L 5,-38 10,-35 15,-30 
+             L 17,-20 25,-18 
+             L 28,-15 30,-10 35,-5 
+             L 38,0 
+             L 35,5 30,10 28,15 
+             L 25,18 17,20 
+             L 15,30 10,35 5,38 
+             L 0,40 
+             L -5,38 -10,35 -15,30 
+             L -17,20 -25,18 
+             L -28,15 -30,10 -35,5 
+             L -38,0 
+             L -35,-5 -30,-10 -28,-15 
+             L -25,-18 -17,-20
+             L -15,-30 -10,-35 -5,-38 Z" 
+          fill="#8B4513" />
+    
+    <!-- Inner gear hole -->
+    <circle cx="0" cy="0" r="15" fill="#F5F5DC" />
+    
+    <!-- Bolt in the center -->
+    <circle cx="0" cy="0" r="5" fill="#B87333" />
+    <circle cx="0" cy="0" r="2" fill="#8B4513" />
+  </g>
+</svg> 

@@ -90,22 +90,41 @@ const BookDetailPage = () => {
     }
   };
   
+  // Animated clock icon from HomePage
+  const ClockIcon = () => (
+    <div className="inline-block mr-2 relative w-6 h-6">
+      <div className="absolute inset-0">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="#2D3A25" strokeWidth="2"/>
+          <path className="clock-hand" d="M12 7v5h4" stroke="#2D3A25" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      </div>
+    </div>
+  );
+  
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary"></div>
+        <div className="relative w-16 h-16">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" fill="#B87333" stroke="#8B4513" strokeWidth="2" />
+            <path d="M50,10 L55,50 L50,55 L45,50 Z M50,90 L45,50 L50,45 L55,50 Z M10,50 L50,45 L55,50 L50,55 Z M90,50 L50,55 L45,50 L50,45 Z" fill="#8B4513" />
+            <circle cx="50" cy="50" r="10" fill="#8B4513" />
+            <circle cx="50" cy="50" r="5" fill="#DAA520" />
+          </svg>
+        </div>
       </div>
     );
   }
   
   if (!book) {
     return (
-      <div className="text-center py-10">
-        <i className="fas fa-exclamation-circle text-4xl text-red-500 mb-3"></i>
-        <h2 className="text-2xl font-semibold mb-2">Book Not Found</h2>
-        <p className="text-neutral-dark mb-6">The book you're looking for doesn't exist or has been removed.</p>
-        <Link href="/" className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md font-medium transition-colors">
-          Return to Homepage
+      <div className="text-center py-10 parchment-bg p-6 rounded-lg victorian-border">
+        <i className="fas fa-exclamation-circle text-4xl text-amber-800 mb-3"></i>
+        <h2 className="text-2xl font-semibold victorian-text mb-2">Book Not Found</h2>
+        <p className="text-neutral-700 mb-6">The volume you seek appears to be missing from our collection.</p>
+        <Link href="/" className="bg-gradient-to-r from-green-900 to-neutral-700 text-white px-4 py-2 rounded-md font-medium transition-colors hover:shadow-md">
+          Return to Library
         </Link>
       </div>
     );
@@ -116,10 +135,10 @@ const BookDetailPage = () => {
     const stars = [];
     
     for (let i = 1; i <= 5; i++) {
-      let starClass = "far fa-star cursor-pointer text-2xl mx-1 hover:text-accent transition-colors";
+      let starClass = "far fa-star cursor-pointer text-2xl mx-1 hover:text-accent-gold transition-colors";
       
       if (i <= (hoverRating || rating)) {
-        starClass = "fas fa-star cursor-pointer text-2xl mx-1 text-accent";
+        starClass = "fas fa-star cursor-pointer text-2xl mx-1 text-accent-gold";
       }
       
       stars.push(
@@ -137,68 +156,91 @@ const BookDetailPage = () => {
   };
   
   return (
-    <section className="animate-fade-in">
-      <div className="mb-6">
-        <Link href="/" className="inline-flex items-center text-primary hover:text-primary-dark">
-          <i className="fas fa-arrow-left mr-2"></i> Back to Books
+    <section className="page-transition max-w-7xl mx-auto px-4">
+      <div className="mb-6 mt-8">
+        <Link href="/" className="inline-flex items-center quill-hover text-neutral-900 hover:text-accent-gold transition-colors">
+          <i className="fas fa-arrow-left mr-2"></i> Return to Library
         </Link>
       </div>
       
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="md:flex">
-          <div className="md:w-1/3 p-6 flex justify-center">
-            <img 
-              src={book.coverImage} 
-              alt={`Book cover for ${book.title}`} 
-              className="w-full max-w-xs object-cover rounded-md shadow-md" 
-            />
+      <div className="parchment-bg rounded-lg victorian-border relative p-6 shadow-md">
+        {/* Decorative corner elements */}
+        <div className="absolute top-0 left-0 w-12 md:w-16 h-12 md:h-16 opacity-20 hidden sm:block">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0 L100 0 L100 20 L20 20 L20 100 L0 100 Z" fill="#2D3A25"/>
+          </svg>
+        </div>
+        <div className="absolute bottom-0 right-0 w-12 md:w-16 h-12 md:h-16 opacity-20 transform rotate-180 hidden sm:block">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0 L100 0 L100 20 L20 20 L20 100 L0 100 Z" fill="#2D3A25"/>
+          </svg>
+        </div>
+        
+        <div className="md:flex relative z-10">
+          <div className="md:w-1/3 p-4 flex justify-center">
+            <div className="relative">
+              <img 
+                src={'../src/data'+book.coverImage} 
+                alt={`Book cover for ${book.title}`} 
+                className="w-full max-w-xs object-cover rounded-md shadow-md border-2 border-amber-900" 
+              />
+              <div className="absolute -bottom-3 -right-3 w-10 h-10">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="45" fill="#B87333" stroke="#8B4513" strokeWidth="2" />
+                  <path d="M50,10 L55,50 L50,55 L45,50 Z" fill="#8B4513" />
+                  <circle cx="50" cy="50" r="5" fill="#DAA520" />
+                </svg>
+              </div>
+            </div>
           </div>
           
-          <div className="md:w-2/3 p-6">
+          <div className="md:w-2/3 p-4">
             <div className="flex justify-between items-start">
-              <h1 className="text-3xl font-heading font-bold text-primary mb-2">{book.title}</h1>
+              <h1 className="text-3xl font-heading victorian-text font-bold text-neutral-900 mb-2 relative after:content-[''] after:absolute after:w-1/3 after:h-1 after:-bottom-2 after:left-0 after:bg-amber-800">{book.title}</h1>
               <button 
                 onClick={handleToggleFavorite}
-                className="text-2xl text-neutral-dark hover:text-accent transition-colors"
+                className="text-2xl text-neutral-900 hover:text-accent-gold transition-colors"
                 aria-label={isFavorite(book.id) ? "Remove from favorites" : "Add to favorites"}
               >
-                <i className={isFavorite(book.id) ? "fas fa-heart text-accent" : "far fa-heart"}></i>
+                <i className={isFavorite(book.id) ? "fas fa-heart text-accent-gold" : "far fa-heart"}></i>
               </button>
             </div>
             
-            <p className="text-xl text-neutral-dark mb-4">{book.author}</p>
+            <p className="text-xl text-neutral-700 mb-4 mt-3 victorian-text">by {book.author}</p>
             
             <div className="flex items-center mb-6">
               <div className="star-rating flex text-xl">
                 {Array.from({ length: Math.floor(book.rating) }).map((_, i) => (
-                  <i key={`star-full-${i}`} className="fas fa-star text-accent"></i>
+                  <i key={`star-full-${i}`} className="fas fa-star text-accent-gold"></i>
                 ))}
                 
                 {book.rating % 1 >= 0.5 && (
-                  <i className="fas fa-star-half-alt text-accent"></i>
+                  <i className="fas fa-star-half-alt text-accent-gold"></i>
                 )}
                 
                 {Array.from({ length: 5 - Math.ceil(book.rating) }).map((_, i) => (
-                  <i key={`star-empty-${i}`} className="far fa-star text-accent"></i>
+                  <i key={`star-empty-${i}`} className="far fa-star text-accent-gold"></i>
                 ))}
               </div>
-              <span className="ml-2 text-neutral-dark">({book.rating.toFixed(1)}/5 from {book.reviews.length} reviews)</span>
+              <span className="ml-2 text-neutral-700">({book.rating.toFixed(1)}/5 from {book.reviews.length} reviews)</span>
             </div>
             
             <div className="mb-6">
-              <h2 className="text-xl font-heading font-semibold text-primary mb-2">Description</h2>
-              <p className="text-neutral-dark">{book.description}</p>
+              <h2 className="text-xl victorian-text font-semibold text-neutral-900 mb-2 flex items-center">
+                <ClockIcon /> <span className="align-middle">Description</span>
+              </h2>
+              <p className="text-neutral-700">{book.description}</p>
             </div>
             
             <div className="flex flex-wrap gap-2 mb-6">
               {book.categories.map(category => (
-                <span key={category} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">
+                <span key={category} className="bg-neutral-50 border border-neutral-700 text-neutral-900 px-3 py-1 rounded-full text-sm victorian-text">
                   {category}
                 </span>
               ))}
             </div>
             
-            <div className="flex items-center text-sm text-neutral-dark">
+            <div className="flex items-center text-sm text-neutral-700">
               <span className="mr-4"><i className="far fa-calendar-alt mr-1"></i> Published: {book.published}</span>
               <span><i className="far fa-file-alt mr-1"></i> Pages: {book.pages}</span>
             </div>
@@ -206,15 +248,21 @@ const BookDetailPage = () => {
         </div>
         
         {/* Reviews Section */}
-        <div className="border-t border-neutral p-6">
-          <h2 className="text-2xl font-heading font-semibold text-primary mb-4">Reviews</h2>
+        <div className="mt-8 pt-6">
+          <div className="ornate-divider">
+            <span></span>
+          </div>
+          
+          <h2 className="text-2xl victorian-text font-semibold text-neutral-900 mb-4 text-center">Reader Impressions</h2>
           
           {/* Add Review Form */}
-          <div className="mb-8 bg-neutral-light p-4 rounded-lg">
+          <div className="mb-8 bg-neutral-50 p-6 rounded-lg border border-neutral-700 shadow-sm relative z-10">
             {!isAuthenticated ? (
-              <div className="py-2">
-                <p className="text-neutral-dark mb-2">You need to be logged in to leave a review.</p>
-                <Link href="/login" className="bg-secondary hover:bg-secondary-dark text-white px-4 py-2 rounded-md text-sm font-medium inline-block transition-colors">
+              <div className="text-center">
+                <p className="text-neutral-700 mb-6 victorian-text">You must be a registered member of our library to leave a review.</p>
+                <Link href="/login" 
+                  className="bg-gradient-to-r from-green-900 to-neutral-700 text-white px-6 py-3 rounded-md font-medium inline-block transition-colors hover:shadow-md relative z-20"
+                >
                   Login to Review
                 </Link>
               </div>
@@ -247,27 +295,27 @@ const BookDetailPage = () => {
                 )}
                 
                 <div className="mb-4">
-                  <label className="block text-neutral-dark mb-2">Your Rating</label>
+                  <label className="block text-neutral-900 victorian-text mb-2">Your Rating</label>
                   <div className="flex star-rating mb-1">
                     {renderStarRating()}
                   </div>
                 </div>
                 
                 <div className="mb-4">
-                  <label htmlFor="reviewComment" className="block text-neutral-dark mb-2">Your Review</label>
+                  <label htmlFor="reviewComment" className="block text-neutral-900 victorian-text mb-2">Your Review</label>
                   <textarea 
                     id="reviewComment"
                     value={reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
                     rows="4" 
-                    className="w-full px-3 py-2 border border-neutral rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full px-3 py-2 border-2 border-neutral-700 rounded-lg focus:ring-2 focus:ring-amber-800 focus:border-amber-800 bg-neutral-50"
                     placeholder="Share your thoughts about this book..."
                   ></textarea>
                 </div>
                 
                 <button 
                   type="submit" 
-                  className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md font-medium transition-colors"
+                  className="bg-gradient-to-r from-green-900 to-neutral-700 text-white px-4 py-2 rounded-md font-medium transition-colors hover:shadow-md"
                 >
                   Submit Review
                 </button>
@@ -282,15 +330,15 @@ const BookDetailPage = () => {
                 <div 
                   key={review.id || index} 
                   className="animate-fade-in" 
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  style={{ animationDelay: `${Math.min(index * 0.1, 0.5)}s` }}
                 >
                   <ReviewItem review={review} />
                 </div>
               ))
             ) : (
-              <div className="text-center py-6 bg-neutral-light rounded-lg">
-                <i className="far fa-comment text-3xl text-neutral-dark mb-2"></i>
-                <p className="text-neutral-dark">No reviews yet. Be the first to review this book!</p>
+              <div className="text-center py-6 bg-neutral-50 rounded-lg border border-neutral-700">
+                <i className="far fa-comment text-3xl text-neutral-700 mb-2"></i>
+                <p className="text-neutral-700 victorian-text">No reviews yet. Be the first to share your thoughts about this literary work!</p>
               </div>
             )}
           </div>

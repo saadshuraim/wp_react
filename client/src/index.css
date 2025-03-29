@@ -1,18 +1,221 @@
+/* Import Google Fonts for Victorian library theme - only the weights we actually use */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Merriweather:wght@400;700&family=Playfair+Display:wght@700&family=Source+Code+Pro&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Primary colors - Victorian library palette */
+    --primary-dark: #2D3A25;    /* Deep forest green */
+    --primary-main: #564334;    /* Rich mahogany brown */
+    --primary-light: #8B7355;   /* Medium brown */
+    --primary-gradient: linear-gradient(135deg, #2D3A25 0%, #564334 100%);
+    
+    /* Accent colors */
+    --accent-gold: #B8860B;     /* Dark goldenrod */
+    --accent-teal: #1D3E3F;     /* Dark teal for accents */
+    
+    /* Neutral colors */
+    --neutral-900: #2C1B01;     /* Very dark brown for text */
+    --neutral-700: #4A3728;     /* Dark brown for secondary text */
+    --neutral-200: #CEB996;     /* Light tan for borders */
+    --neutral-100: #F5F2E9;     /* Cream for backgrounds */
+    --neutral-50: #FFFDF7;      /* Off-white for cards */
+    
+    /* Component colors */
+    --card-bg: #FFFDF7;
+    --card-shadow: 0 4px 6px rgba(44, 27, 1, 0.15), 0 1px 3px rgba(44, 27, 1, 0.2);
+    --card-hover-shadow: 0 10px 15px rgba(44, 27, 1, 0.2), 0 4px 6px rgba(44, 27, 1, 0.15);
+    --button-shadow: 0 1px 3px rgba(44, 27, 1, 0.2), 0 1px 2px rgba(44, 27, 1, 0.15);
+    --background: 0 0% 100%;
+    --foreground: 35 80% 9%;
+    --card: 43 45% 98%;
+    --card-foreground: 35 80% 9%;
+    --popover: 43 45% 98%;
+    --popover-foreground: 35 80% 9%;
+    --secondary: 35 10% 96%;
+    --secondary-foreground: 35 80% 12%;
+    --muted: 35 10% 96%;
+    --muted-foreground: 35 18% 30%;
+    --accent: 35 10% 96%;
+    --accent-foreground: 35 80% 12%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 35 10% 98%;
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 35 75% 30%;
+    --radius: 0.5rem;
+    
+    /* Victorian specific variables */
+    --parchment: url('/src/assets/images/parchment.svg');
+    --gear-border: url('/src/assets/images/gear-border.svg');
+    --brass-texture: url('/src/assets/images/brass-texture.svg');
+    --copper-texture: url('/src/assets/images/copper-texture.svg');
+    --wood-texture: url('/src/assets/images/wood-texture.svg');
+  }
+
   * {
     @apply border-border;
   }
 
+  /* Optimize for reduced motion - respect user preferences */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .clock-hand {
+      animation: none !important;
+    }
+  }
+
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-serif antialiased bg-background text-foreground;
+    background-color: var(--neutral-100);
+    color: var(--neutral-900);
+    font-family: 'Merriweather', 'Playfair Display', serif;
+    text-rendering: optimizeSpeed;
+  }
+  
+  /* Optimize images */
+  img, svg {
+    max-width: 100%;
+    display: block;
   }
 }
 
-/* Custom animations */
+/* Victorian library utility classes - simplified for better performance */
+.brass-bg {
+  background-color: #B87333;
+  position: relative;
+}
+
+.copper-bg {
+  background-color: #CD7F32;
+  position: relative;
+}
+
+.wood-bg {
+  background-color: #8B4513;
+  position: relative;
+}
+
+.parchment-bg {
+  background-color: #F5F2E9;
+  position: relative;
+}
+
+.victorian-border {
+  position: relative;
+  border: 4px double var(--accent-gold);
+  border-radius: 4px;
+}
+
+.victorian-border::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid var(--accent-gold);
+  border-radius: 2px;
+}
+
+.victorian-text {
+  font-family: 'Merriweather', serif;
+  letter-spacing: 0.03em;
+}
+
+.time-period-scifi {
+  font-family: 'Source Code Pro', monospace;
+  color: #3B5769;
+}
+
+.time-period-classic {
+  font-family: 'Playfair Display', serif;
+  color: #4A3728;
+}
+
+.time-period-historical {
+  font-family: 'Cormorant Garamond', serif;
+  color: #564334;
+}
+
+.quill-hover {
+  position: relative;
+}
+
+/* Only apply hover effects on devices that support hover */
+@media (hover: hover) {
+  .quill-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gold);
+    transition: width 0.3s ease;
+  }
+
+  .quill-hover:hover::after {
+    width: 100%;
+  }
+}
+
+/* Animated clock hand for background - will be disabled with prefers-reduced-motion */
+@keyframes rotateClockHand {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.clock-hand {
+  animation: rotateClockHand 60s linear infinite;
+  will-change: transform; /* Optimize animation performance */
+}
+
+/* Ornate divider */
+.ornate-divider {
+  position: relative;
+  text-align: center;
+  height: 20px;
+  margin: 20px 0;
+}
+
+.ornate-divider::before,
+.ornate-divider::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+  top: 50%;
+  width: 40%;
+}
+
+.ornate-divider::before {
+  left: 0;
+}
+
+.ornate-divider::after {
+  right: 0;
+}
+
+.ornate-divider span {
+  background: var(--accent-gold);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  top: -5px;
+}
+
+/* Custom animations - simplified and optimized */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -20,7 +223,7 @@
 
 @keyframes scaleUp {
   0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
+  50% { transform: scale(1.1); } /* Reduced scaling for better performance */
   100% { transform: scale(1); }
 }
 
@@ -30,6 +233,7 @@
 
 .animate-scale-up {
   animation: scaleUp 0.3s ease-in-out;
+  will-change: transform; /* Optimize animation performance */
 }
 
 .page-transition {
@@ -38,13 +242,13 @@
 
 /* Font styles */
 .font-heading {
-  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
 }
 
 /* Star rating colors */
 .star-rating .fas, .star-rating .far, .star-rating .fa-star-half-alt {
-  color: #FFD700;
+  color: var(--accent-gold);
 }
 
 /* Link hover styles */
@@ -59,5 +263,157 @@
   left: 0;
   width: 100%;
   height: 2px;
+  background-color: var(--accent-gold);
+}
+
+/* Header */
+.site-header {
+  background-color: var(--primary-dark);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-text {
+  color: white;
+  font-weight: 700;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+/* Login button */
+.login-button {
+  background-color: var(--accent-teal);
+  color: white;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.login-button:hover {
+  background-color: #0f766e; /* Darker teal */
+  transform: translateY(-1px);
+}
+
+/* Hero section */
+.hero-section {
+  background: var(--primary-gradient);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.hero-content {
+  padding: 3rem;
+}
+
+.hero-title {
+  color: white;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.hero-text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.explore-button {
   background-color: white;
+  color: var(--primary-dark);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.explore-button:hover {
+  background-color: var(--neutral-50);
+  transform: translateY(-1px);
+  box-shadow: var(--button-shadow);
+}
+
+/* Category filters */
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.category-button {
+  background-color: var(--neutral-50);
+  color: var(--neutral-700);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  border: 1px solid var(--neutral-200);
+}
+
+.category-button:hover {
+  background-color: var(--neutral-200);
+}
+
+.category-button.active {
+  background-color: var(--primary-main);
+  color: white;
+  border-color: var(--primary-main);
+}
+
+/* Search bar */
+.search-bar {
+  background-color: white;
+  border: 1px solid var(--neutral-200);
+  border-radius: 8px;
+  box-shadow: var(--button-shadow);
+  transition: all 0.2s;
+}
+
+.search-bar:focus-within {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Book cards */
+.book-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.book-title {
+  color: var(--neutral-900);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+.book-author {
+  color: var(--neutral-700);
+  font-size: 0.875rem;
+}
+
+/* Ratings */
+.rating-stars {
+  color: var(--accent-gold);
+}
+
+/* Favorites icon */
+.favorite-icon {
+  color: #e11d48; /* Rose color for heart icon */
+  transition: all 0.2s;
+}
+
+.favorite-icon:hover {
+  transform: scale(1.1);
 }

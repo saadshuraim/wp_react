@@ -1,0 +1,63 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base wood color -->
+  <rect width="100%" height="100%" fill="#8B4513" />
+  
+  <!-- Noise pattern overlay for texture -->
+  <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" result="noise" />
+    <feColorMatrix type="matrix" values="1 0 0 0 0
+                                         0 1 0 0 0
+                                         0 0 1 0 0
+                                         0 0 0 0.2 0" />
+  </filter>
+  
+  <!-- Apply noise -->
+  <rect width="100%" height="100%" filter="url(#noise)" />
+  
+  <!-- Wood grain pattern -->
+  <g fill="none" stroke="#5E2C04" stroke-opacity="0.15">
+    <!-- Horizontal grain lines -->
+    <path d="M0,50 
+             C200,40 400,60 800,45
+             M0,100 
+             C250,95 350,110 800,105
+             M0,150 
+             C150,160 450,130 800,145
+             M0,200 
+             C300,210 500,190 800,205
+             M0,250 
+             C200,245 600,260 800,255
+             M0,300 
+             C250,310 550,290 800,305
+             M0,350 
+             C300,340 450,370 800,355
+             M0,400 
+             C200,410 400,390 800,405
+             M0,450 
+             C250,440 550,470 800,455
+             M0,500 
+             C200,510 450,490 800,505
+             M0,550 
+             C300,540 500,560 800,545
+             M0,600 
+             C250,610 400,590 800,605
+             M0,650 
+             C200,640 550,670 800,655
+             M0,700 
+             C300,710 500,690 800,705
+             M0,750 
+             C250,740 400,760 800,755"
+          stroke-width="2" />
+  </g>
+  
+  <!-- Knots in the wood -->
+  <g>
+    <ellipse cx="200" cy="175" rx="25" ry="20" fill="#5E2C04" fill-opacity="0.3" />
+    <ellipse cx="550" cy="350" rx="30" ry="25" fill="#5E2C04" fill-opacity="0.3" />
+    <ellipse cx="350" cy="600" rx="22" ry="18" fill="#5E2C04" fill-opacity="0.3" />
+    <ellipse cx="650" cy="675" rx="28" ry="22" fill="#5E2C04" fill-opacity="0.3" />
+  </g>
+  
+  <!-- Highlights -->
+  <rect width="100%" height="100%" fill="#CD853F" fill-opacity="0.05" />
+</svg> 

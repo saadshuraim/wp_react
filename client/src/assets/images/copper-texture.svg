@@ -1,0 +1,41 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base copper color -->
+  <rect width="100%" height="100%" fill="#CD7F32" />
+  
+  <!-- Noise pattern overlay for texture -->
+  <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" result="noise" />
+    <feColorMatrix type="matrix" values="1 0 0 0 0
+                                        0 1 0 0 0
+                                        0 0 1 0 0
+                                        0 0 0 0.1 0" />
+  </filter>
+  
+  <!-- Apply noise -->
+  <rect width="100%" height="100%" filter="url(#noise)" />
+  
+  <!-- Patina effect (greenish spots) -->
+  <filter id="patina">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="noise" />
+    <feColorMatrix type="matrix" values="0 0 0 0 0
+                                        0.2 0.4 0 0 0
+                                        0.1 0.4 0.2 0 0
+                                        0 0 0 0.1 0" />
+  </filter>
+  <rect width="100%" height="100%" filter="url(#patina)" />
+  
+  <!-- Circular oxidation spots -->
+  <g fill="#16796F" fill-opacity="0.1">
+    <circle cx="200" cy="150" r="80" />
+    <circle cx="600" cy="250" r="100" />
+    <circle cx="300" cy="500" r="120" />
+    <circle cx="550" cy="650" r="90" />
+    <circle cx="150" cy="700" r="70" />
+  </g>
+  
+  <!-- Highlight reflections -->
+  <g fill="#FFF" fill-opacity="0.08">
+    <ellipse cx="400" cy="200" rx="200" ry="60" />
+    <ellipse cx="200" cy="600" rx="150" ry="40" />
+  </g>
+</svg> 

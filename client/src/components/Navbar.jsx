@@ -3,115 +3,150 @@ import { Link, useLocation } from 'wouter';
 import { useAuth } from '../hooks/useAuth';
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [location] = useLocation();
-  const { isAuthenticated, logout } = useAuth();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isAuthenticated, logout, user } = useAuth();
   
-  // Close mobile menu when changing location
+  // Handle scrolling detection for navbar styling
   useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location]);
-  
-  // Toggle mobile menu
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   return (
-    <nav className="bg-primary shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center">
-              <svg className="h-10 w-10 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'brass-bg shadow-md py-2' : 'bg-opacity-90 py-4'
+    } wood-bg`}>
+      {/* Decorative border at the bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-900 via-amber-700 to-amber-900"></div>
+      
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center">
+          {/* Logo and Site Title */}
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="relative w-10 h-10">
+              <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                <rect width="30" height="40" x="10" y="5" rx="2" fill="#DAA520" />
+                <rect width="28" height="38" x="11" y="6" rx="1" fill="#FFFAF0" />
+                <path d="M15 15 H35 M15 20 H30 M15 25 H35 M15 30 H25" stroke="#8B4513" strokeWidth="1" />
+                <path d="M20 38 C25 45, 35 45, 40 38" stroke="#8B4513" strokeWidth="1" fill="transparent" />
+                <path d="M20 6 V0 H30 V6" stroke="#8B4513" strokeWidth="1" fill="transparent" />
               </svg>
-              <span className="ml-2 text-white font-heading font-bold text-xl">BookHaven</span>
-              <span className="ml-2 text-xs text-white/70 hidden md:block">FAST University Karachi</span>
-            </Link>
-          </div>
+            </div>
+            <div>
+              <span className="font-bold text-xl text-amber-100 steampunk-text">BookHaven</span>
+              <span className="ml-1 text-xs text-amber-300 steampunk-text">AI Department</span>
+            </div>
+          </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-6">
-            <NavLink href="/" active={location === '/'}>Home</NavLink>
-            <NavLink href="/add-book" active={location === '/add-book'}>Add Book</NavLink>
-            <NavLink href="/favorites" active={location === '/favorites'}>Favorites</NavLink>
+          <div className="hidden md:flex items-center space-x-8">
+            <Link href="/" className={`nav-link quill-hover steampunk-text ${location === '/' ? 'active text-amber-200' : 'text-amber-100'}`}>
+              <i className="fas fa-compass mr-1"></i> Home
+            </Link>
+            <Link href="/favorites" className={`nav-link quill-hover steampunk-text ${location === '/favorites' ? 'active text-amber-200' : 'text-amber-100'}`}>
+              <i className="fas fa-heart mr-1"></i> Favorites
+            </Link>
+            <Link href="/add-book" className={`nav-link quill-hover steampunk-text ${location === '/add-book' ? 'active text-amber-200' : 'text-amber-100'}`}>
+              <i className="fas fa-book-medical mr-1"></i> Add Book
+            </Link>
             
             {isAuthenticated ? (
-              <button 
-                onClick={logout}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded-md text-sm font-medium transition-colors"
-              >
-                Logout
-              </button>
+              <div className="relative group">
+                <button 
+                  className="flex items-center space-x-1 text-amber-100 steampunk-text"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  <div className="w-8 h-8 rounded-full bg-amber-800 flex items-center justify-center">
+                    <span className="text-amber-100">{user?.name?.charAt(0).toUpperCase() || 'U'}</span>
+                  </div>
+                  <span>{user?.name || 'User'}</span>
+                  <i className="fas fa-caret-down"></i>
+                </button>
+                
+                {isOpen && (
+                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg parchment-bg py-1 z-10 border border-amber-800">
+                    <div className="px-4 py-2 text-sm text-amber-900 border-b border-amber-800">
+                      Signed in as <span className="font-semibold">{user?.email}</span>
+                    </div>
+                    <button 
+                      onClick={() => {
+                        logout();
+                        setIsOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-amber-900 hover:bg-amber-800 hover:bg-opacity-20 steampunk-text"
+                    >
+                      <i className="fas fa-sign-out-alt mr-2"></i> Sign out
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
-              <Link 
-                href="/login"
-                className="bg-secondary hover:bg-secondary-dark text-white px-4 py-1 rounded-md text-sm font-medium transition-colors"
-              >
-                Login
+              <Link href="/login">
+                <button className="login-button bg-gradient-to-r from-amber-800 to-amber-700 hover:from-amber-700 hover:to-amber-600 text-amber-100 py-2 px-4 rounded-md flex items-center transition-all steampunk-text">
+                  <i className="fas fa-key mr-2"></i> Login
+                </button>
               </Link>
             )}
           </div>
           
-          {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden">
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
             <button 
-              onClick={toggleMobileMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-accent focus:outline-none"
-              aria-expanded={mobileMenuOpen}
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-amber-100 focus:outline-none"
             >
-              <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
             </button>
           </div>
         </div>
-      </div>
-      
-      {/* Mobile Menu */}
-      <div className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-primary-dark pb-3 px-4`}>
-        <div className="pt-2 pb-3 space-y-1">
-          <MobileNavLink href="/" active={location === '/'}>Home</MobileNavLink>
-          <MobileNavLink href="/add-book" active={location === '/add-book'}>Add Book</MobileNavLink>
-          <MobileNavLink href="/favorites" active={location === '/favorites'}>Favorites</MobileNavLink>
-          
-          {isAuthenticated ? (
-            <button 
-              onClick={logout}
-              className="block w-full text-left px-3 py-2 rounded-md text-white font-medium hover:bg-primary-light"
-            >
-              Logout
-            </button>
-          ) : (
-            <MobileNavLink href="/login" active={location === '/login'}>Login</MobileNavLink>
-          )}
-        </div>
+        
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden parchment-bg border border-amber-800 rounded-lg mt-4 py-4 px-2 shadow-lg">
+            <Link href="/" className="block py-2 px-4 text-amber-900 steampunk-text hover:bg-amber-800 hover:bg-opacity-20 rounded-md">
+              <i className="fas fa-compass mr-2"></i> Home
+            </Link>
+            <Link href="/favorites" className="block py-2 px-4 text-amber-900 steampunk-text hover:bg-amber-800 hover:bg-opacity-20 rounded-md">
+              <i className="fas fa-heart mr-2"></i> Favorites
+            </Link>
+            <Link href="/add-book" className="block py-2 px-4 text-amber-900 steampunk-text hover:bg-amber-800 hover:bg-opacity-20 rounded-md">
+              <i className="fas fa-book-medical mr-2"></i> Add Book
+            </Link>
+            
+            <div className="border-t border-amber-800 my-2"></div>
+            
+            {isAuthenticated ? (
+              <>
+                <div className="px-4 py-2 text-amber-900 steampunk-text">
+                  Signed in as <span className="font-semibold">{user?.name}</span>
+                </div>
+                <button 
+                  onClick={logout}
+                  className="w-full text-left py-2 px-4 text-amber-900 steampunk-text hover:bg-amber-800 hover:bg-opacity-20 rounded-md"
+                >
+                  <i className="fas fa-sign-out-alt mr-2"></i> Sign out
+                </button>
+              </>
+            ) : (
+              <Link href="/login" className="block py-2 px-4 text-amber-900 steampunk-text hover:bg-amber-800 hover:bg-opacity-20 rounded-md">
+                <i className="fas fa-key mr-2"></i> Login
+              </Link>
+            )}
+          </div>
+        )}
       </div>
     </nav>
   );
 };
-
-// Desktop NavLink component
-const NavLink = ({ href, active, children }) => (
-  <Link 
-    href={href} 
-    className={`nav-link text-white hover:text-accent px-3 py-2 text-sm font-medium ${active ? 'active' : ''}`}
-  >
-    {children}
-  </Link>
-);
-
-// Mobile NavLink component
-const MobileNavLink = ({ href, active, children }) => (
-  <Link 
-    href={href} 
-    className={`block px-3 py-2 rounded-md text-white font-medium ${active ? 'bg-primary-light' : ''}`}
-  >
-    {children}
-  </Link>
-);
 
 export default Navbar;

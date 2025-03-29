@@ -1,77 +1,104 @@
 import { Link } from 'wouter';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  
   return (
-    <footer className="bg-primary text-white mt-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="md:flex md:justify-between">
-          <div className="mb-8 md:mb-0">
-            <div className="flex items-center">
-              <svg className="h-10 w-10 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span className="ml-2 font-heading font-bold text-xl">BookHaven</span>
-            </div>
-            <p className="mt-2 text-sm text-white/70">
-              FAST University Karachi<br />
-              Artificial Intelligence Department<br />
-              Saad Rashid | 22K-4108 | BSAI-6B<br />
-              Assignment 2 (React App) - Web Programming
+    <footer className="copper-bg relative mt-20 py-10 border-t-2 border-amber-900">
+      {/* Decorative gear elements */}
+      <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+        <div className="relative w-16 h-16">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" fill="#B87333" stroke="#8B4513" strokeWidth="2" />
+            <path d="M50,10 L55,50 L50,55 L45,50 Z M50,90 L45,50 L50,45 L55,50 Z M10,50 L50,45 L55,50 L50,55 Z M90,50 L50,55 L45,50 L50,45 Z" fill="#8B4513" />
+            <circle cx="50" cy="50" r="10" fill="#8B4513" />
+            <circle cx="50" cy="50" r="5" fill="#DAA520" />
+          </svg>
+        </div>
+      </div>
+      
+      {/* Border pattern */}
+      <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-900 via-amber-700 to-amber-900"></div>
+      
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+          {/* Site info */}
+          <div className="md:col-span-2">
+            <h2 className="text-2xl font-bold mb-4 steampunk-text text-amber-100">BookHaven</h2>
+            <p className="text-amber-200 mb-4">
+              Journey through literary history with our curated collection of books from every era, brought to you by the AI Department at FAST University Karachi.
             </p>
+            <div className="flex flex-col space-y-2">
+              <a href="https://github.com/saadshuraim" target="_blank" rel="noopener noreferrer" 
+                 className="text-amber-200 hover:text-amber-100 transition-colors">
+                <i className="fab fa-github mr-2"></i> github.com/saadshuraim
+              </a>
+              <a href="https://www.linkedin.com/in/saad-rashid-990724214/" target="_blank" rel="noopener noreferrer" 
+                 className="text-amber-200 hover:text-amber-100 transition-colors">
+                <i className="fab fa-linkedin mr-2"></i> linkedin.com/in/saad-rashid-990724214
+              </a>
+              <a href="mailto:k224108@nu.edu.pk" 
+                 className="text-amber-200 hover:text-amber-100 transition-colors">
+                <i className="fas fa-envelope mr-2"></i> k224108@nu.edu.pk
+              </a>
+            </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider">Navigation</h3>
-              <ul className="mt-4 space-y-2">
-                <li><Link href="/" className="text-white/70 hover:text-white">Home</Link></li>
-                <li><Link href="/add-book" className="text-white/70 hover:text-white">Add Book</Link></li>
-                <li><Link href="/favorites" className="text-white/70 hover:text-white">Favorites</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider">Categories</h3>
-              <ul className="mt-4 space-y-2">
-                <li><Link href="/" className="text-white/70 hover:text-white">Artificial Intelligence</Link></li>
-                <li><Link href="/" className="text-white/70 hover:text-white">Computer Science</Link></li>
-                <li><Link href="/" className="text-white/70 hover:text-white">Pakistani Literature</Link></li>
-                <li><Link href="/" className="text-white/70 hover:text-white">Fiction</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider">Connect</h3>
-              <ul className="mt-4 space-y-2">
-                <li><a href="https://github.com" className="text-white/70 hover:text-white">GitHub</a></li>
-                <li><a href="https://twitter.com" className="text-white/70 hover:text-white">Twitter</a></li>
-                <li><a href="https://facebook.com" className="text-white/70 hover:text-white">Facebook</a></li>
-                <li><a href="https://linkedin.com" className="text-white/70 hover:text-white">LinkedIn</a></li>
-              </ul>
-            </div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-bold mb-4 steampunk-text text-amber-100">Destinations</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/" className="text-amber-200 hover:text-amber-100 transition-colors quill-hover">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/favorites" className="text-amber-200 hover:text-amber-100 transition-colors quill-hover">
+                  Favorites
+                </Link>
+              </li>
+              <li>
+                <Link href="/add-book" className="text-amber-200 hover:text-amber-100 transition-colors quill-hover">
+                  Add Book
+                </Link>
+              </li>
+              <li>
+                <Link href="/login" className="text-amber-200 hover:text-amber-100 transition-colors quill-hover">
+                  Login
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Contact */}
+          <div>
+            <h3 className="text-xl font-bold mb-4 steampunk-text text-amber-100">Contact the Librarian</h3>
+            <address className="not-italic">
+              <p className="text-amber-200 mb-2">
+                <i className="fas fa-map-marker-alt mr-2 text-amber-400"></i>
+                FAST University Karachi
+              </p>
+              <p className="text-amber-200 mb-2">
+                <i className="fas fa-envelope mr-2 text-amber-400"></i>
+                <a href="mailto:info@bookhaven.com" className="hover:text-amber-100 transition-colors">
+                  info@bookhaven.com
+                </a>
+              </p>
+              <p className="text-amber-200">
+                <i className="fas fa-phone mr-2 text-amber-400"></i>
+                <a href="tel:+923001234567" className="hover:text-amber-100 transition-colors">
+                  +92 300 1234567
+                </a>
+              </p>
+            </address>
           </div>
         </div>
         
-        <div className="mt-8 pt-8 border-t border-white/10 md:flex md:items-center md:justify-between">
-          <p className="text-sm text-white/70">
-            &copy; {new Date().getFullYear()} BookHaven - FAST University Karachi AI Department. All rights reserved.
+        <div className="mt-10 pt-6 border-t border-amber-800 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-amber-300 text-sm mb-4 md:mb-0 steampunk-text">
+            &copy; {currentYear} BookHaven Time Travel. All rights reserved through the ages.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="https://github.com" className="text-white/70 hover:text-white">
-              <i className="fab fa-github"></i>
-            </a>
-            <a href="https://twitter.com" className="text-white/70 hover:text-white">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="https://facebook.com" className="text-white/70 hover:text-white">
-              <i className="fab fa-facebook"></i>
-            </a>
-            <a href="https://linkedin.com" className="text-white/70 hover:text-white">
-              <i className="fab fa-linkedin"></i>
-            </a>
-          </div>
         </div>
       </div>
     </footer>
